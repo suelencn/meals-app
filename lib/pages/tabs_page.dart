@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../models/meal.dart';
 import '../widgets/main_drawer.dart';
 import './favorites_page.dart';
 import './categories_page.dart';
 
 class TabsPage extends StatefulWidget {
+  final List<Meal> favoriteMeals;
+
+  TabsPage(this.favoriteMeals);
+
   @override
   State<TabsPage> createState() => _TabsPageState();
 }
@@ -17,8 +22,8 @@ class _TabsPageState extends State<TabsPage> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Meals'),
-          bottom: TabBar(
+          title: const Text('Meals'),
+          bottom: const TabBar(
             tabs: [
               Tab(
                 icon: Icon(
@@ -39,7 +44,7 @@ class _TabsPageState extends State<TabsPage> {
         body: TabBarView(
           children: [
             CategoriesPage(),
-            FavoritesPage(),
+            FavoritesPage(widget.favoriteMeals),
           ],
         ),
       ),
